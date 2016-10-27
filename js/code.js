@@ -1,32 +1,28 @@
-var quoteString = 'Life is not measured by the number of breaths we take, but by the moments that take our breath away.';
+(function(){
 
-var wordCount = {};
+  var sonnet = document.querySelector(".sonnet").innerText;
 
-var counter = wordFrequency(quoteString).forEach(function countNum(count) {
-wordCount[count] = (wordCount[count] || 0) +1;
-});
+  // This fn takes in a string of words and returns an object with the long words counted.
+  function wordFrequency(stringToSplit){
+    var arrayOfStrings = stringToSplit.split (" ");
+    var noShortWordsArray = [];
+    var frequency = {};
 
-function wordFrequency (stringToSplit) {
-  var arrayOfStrings = stringToSplit.split(" ");
-  console.log(arrayOfStrings);
-  return arrayOfStrings;
-}
+    arrayOfStrings.forEach(function wordLength(word) {
+      if (word.length > 2) {
+        noShortWordsArray.push(word);
+      }
+    });
 
+    noShortWordsArray.forEach(function count(word) {
+      if (frequency[word]){
+        frequency[word] += 1;
+      } else {
+        frequency[word] = 1;
+      }
+    });
+    return frequency;
+  }
 
-console.log(wordCount);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-wordFrequency(quoteString);
+  console.log(wordFrequency(sonnet));
+})();
